@@ -1,6 +1,7 @@
 package com.example.InventoryManagement.service;
 
 import com.example.InventoryManagement.entity.StockItem;
+import com.example.InventoryManagement.exception.ResourceNotFoundException;
 import com.example.InventoryManagement.repository.StockItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class StockItemService {
 
   public StockItem findById(Long id) {
     return stockItemRepository.findById(id)
-      .orElseThrow(() -> new RuntimeException("Stock item not found"));
+      .orElseThrow(() ->
+        new ResourceNotFoundException("Stock item with id " + id + " not found"));
   }
 
   public void delete(Long id) {

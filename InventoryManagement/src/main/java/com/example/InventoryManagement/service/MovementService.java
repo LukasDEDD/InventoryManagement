@@ -1,6 +1,7 @@
 package com.example.InventoryManagement.service;
 
 import com.example.InventoryManagement.entity.Movement;
+import com.example.InventoryManagement.exception.ResourceNotFoundException;
 import com.example.InventoryManagement.repository.MovementRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class MovementService {
 
   public Movement findById(Long id) {
     return movementRepository.findById(id)
-      .orElseThrow(() -> new RuntimeException("Movement not found"));
+      .orElseThrow(() ->
+        new ResourceNotFoundException("Movement with id " + id + " not found"));
   }
 
   public void delete(Long id) {

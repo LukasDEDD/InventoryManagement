@@ -1,6 +1,7 @@
 package com.example.InventoryManagement.service;
 
 import com.example.InventoryManagement.entity.Reservation;
+import com.example.InventoryManagement.exception.ResourceNotFoundException;
 import com.example.InventoryManagement.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class ReservationService {
 
   public Reservation findById(Long id) {
     return reservationRepository.findById(id)
-      .orElseThrow(() -> new RuntimeException("Reservation not found"));
+      .orElseThrow(() ->
+        new ResourceNotFoundException("Reservation with id " + id + " not found"));
   }
 
   public void delete(Long id) {
