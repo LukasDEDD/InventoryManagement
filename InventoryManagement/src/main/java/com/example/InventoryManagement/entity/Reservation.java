@@ -22,49 +22,11 @@ public class Reservation {
   @Column(name = "created_at")
   private OffsetDateTime createdAt;
 
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private String status;
+  private ReservationStatus status;
 
   public Reservation() {
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public Product getProduct() {
-    return product;
-  }
-
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public OffsetDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
-  }
-
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
-  }
-
-  public void setCreatedAt(OffsetDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
 }

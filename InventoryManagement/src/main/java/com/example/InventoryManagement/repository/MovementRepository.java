@@ -1,4 +1,9 @@
 package com.example.InventoryManagement.repository;
 
-public class MovementRepository {
+
+import com.example.InventoryManagement.entity.Movement;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MovementRepository extends JpaRepository<Movement, Long> {
+
 }

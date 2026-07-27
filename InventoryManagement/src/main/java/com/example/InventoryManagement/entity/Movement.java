@@ -15,8 +15,9 @@ public class Movement {
   @JoinColumn(name = "product_id")
   private Product product;
 
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private String type;
+  private MovementType type;
 
   @Column(nullable = false)
   private Integer quantity;
@@ -31,36 +32,36 @@ public class Movement {
     return id;
   }
 
-  public Product getProduct() {
-    return product;
-  }
-
-  public String getType() {
-    return type;
-  }
-
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public OffsetDateTime getCreatedAt() {
-    return createdAt;
-  }
-
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Product getProduct() {
+    return product;
   }
 
   public void setProduct(Product product) {
     this.product = product;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public Integer getQuantity() {
+    return quantity;
   }
 
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;
+  }
+
+  public MovementType getType() {
+    return type;
+  }
+
+  public void setType(MovementType type) {
+    this.type = type;
+  }
+
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
   }
 
   public void setCreatedAt(OffsetDateTime createdAt) {
