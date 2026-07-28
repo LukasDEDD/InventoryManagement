@@ -13,18 +13,22 @@ public class MovementService {
   private final MovementRepository movementRepository;
 
   public MovementService(MovementRepository movementRepository) {
+
     this.movementRepository = movementRepository;
   }
 
   public Movement create(Movement movement) {
+
     return movementRepository.save(movement);
   }
 
   public Movement update(Movement movement) {
+
     return movementRepository.save(movement);
   }
 
   public List<Movement> findAll() {
+
     return movementRepository.findAll();
   }
 
@@ -43,6 +47,13 @@ public class MovementService {
   }
 
   public long count() {
+
     return movementRepository.count();
+  }
+  public void moveStock(Long fromWarehouseId,
+                        Long toWarehouseId,
+                        Long productId,
+                        Integer quantity) {
+
   }
 }

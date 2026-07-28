@@ -45,4 +45,11 @@ public class ReservationService {
   public long count() {
     return reservationRepository.count();
   }
+  public void reserveStock(Long productId, Integer quantity) {
+
+  }
+
+  public void releaseStock(Long productId, Integer quantity) {
+
+  }
 }
