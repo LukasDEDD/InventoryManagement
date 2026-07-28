@@ -3,10 +3,15 @@ package com.example.InventoryManagement.service;
 import com.example.InventoryManagement.dto.movement.MovementDto;
 import com.example.InventoryManagement.dto.movement.MovementRequest;
 import com.example.InventoryManagement.entity.Movement;
+import com.example.InventoryManagement.entity.Reservation;
+import com.example.InventoryManagement.entity.ReservationStatus;
+import com.example.InventoryManagement.entity.StockItem;
 import com.example.InventoryManagement.exception.ResourceNotFoundException;
 import com.example.InventoryManagement.mapper.MovementMapper;
 import com.example.InventoryManagement.repository.MovementRepository;
 import com.example.InventoryManagement.repository.ProductRepository;
+import com.example.InventoryManagement.repository.ReservationRepository;
+import com.example.InventoryManagement.repository.StockItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +21,19 @@ public class MovementService {
 
   private final MovementRepository movementRepository;
   private final ProductRepository productRepository;
+  private final StockItemRepository stockItemRepository;
+  private final ReservationRepository reservationRepository;
   private final MovementMapper movementMapper;
 
   public MovementService(MovementRepository movementRepository,
                          ProductRepository productRepository,
+                         StockItemRepository stockItemRepository,
+                         ReservationRepository reservationRepository,
                          MovementMapper movementMapper) {
     this.movementRepository = movementRepository;
     this.productRepository = productRepository;
+    this.stockItemRepository = stockItemRepository;
+    this.reservationRepository = reservationRepository;
     this.movementMapper = movementMapper;
   }
 
@@ -87,6 +98,21 @@ public class MovementService {
 
   public void moveStock(Long productId, Integer quantity) {
 
+    Reservation reservation = reservationRepository.findByProductId(productId)
+      .orElseThrow(() -> new ResourceNotFoundException(
+        "Reservation not found for product id: " + productId));
+
+
+    StockItem stockItem = stockItemRepository.findByProductId(productId)
+      .orElseThrow(() -> new ResourceNotFoundException(
+        "Stock item not found for product id: " + productId));
+
+    stockItem.setQuantity(stockItem.getQuantity() + quantity);
+    stockItemRepository.save(stockItem);
+
+
+    reservation.setStatus(ReservationStatus.CANCELLED);
+    reservationRepository.save(reservation);
 
   }
 }

@@ -68,7 +68,7 @@ public class ProductService {
     return productRepository.existsById(id);
   }
 
-  public long count() {
+  public long count()  {
     return productRepository.count();
   }
 }
