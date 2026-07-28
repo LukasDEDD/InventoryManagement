@@ -1,7 +1,11 @@
 package com.example.InventoryManagement.service;
 
+import com.example.InventoryManagement.dto.reservation.ReservationDto;
+import com.example.InventoryManagement.dto.reservation.ReservationRequest;
 import com.example.InventoryManagement.entity.Reservation;
 import com.example.InventoryManagement.exception.ResourceNotFoundException;
+import com.example.InventoryManagement.mapper.ReservationMapper;
+import com.example.InventoryManagement.repository.ProductRepository;
 import com.example.InventoryManagement.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,27 +15,63 @@ import java.util.List;
 public class ReservationService {
 
   private final ReservationRepository reservationRepository;
+  private final ProductRepository productRepository;
+  private final ReservationMapper reservationMapper;
 
-  public ReservationService(ReservationRepository reservationRepository) {
+  public ReservationService(ReservationRepository reservationRepository,
+                            ProductRepository productRepository,
+                            ReservationMapper reservationMapper) {
     this.reservationRepository = reservationRepository;
+    this.productRepository = productRepository;
+    this.reservationMapper = reservationMapper;
   }
 
-  public Reservation create(Reservation reservation) {
-    return reservationRepository.save(reservation);
+  public ReservationDto create(ReservationRequest request) {
+
+    Reservation reservation = reservationMapper.toEntity(
+      request,
+      productRepository.findById(request.getProductId())
+        .orElseThrow(() ->
+          new ResourceNotFoundException(
+            "Product with id " + request.getProductId() + " not found"))
+    );
+
+    return reservationMapper.toDto(reservationRepository.save(reservation));
   }
 
-  public Reservation update(Reservation reservation) {
-    return reservationRepository.save(reservation);
-  }
+  public ReservationDto update(Long id, ReservationRequest request) {
 
-  public List<Reservation> findAll() {
-    return reservationRepository.findAll();
-  }
-
-  public Reservation findById(Long id) {
-    return reservationRepository.findById(id)
+    Reservation reservation = reservationRepository.findById(id)
       .orElseThrow(() ->
         new ResourceNotFoundException("Reservation with id " + id + " not found"));
+
+    reservationMapper.updateEntity(
+      request,
+      reservation,
+      productRepository.findById(request.getProductId())
+        .orElseThrow(() ->
+          new ResourceNotFoundException(
+            "Product with id " + request.getProductId() + " not found"))
+    );
+
+    return reservationMapper.toDto(reservationRepository.save(reservation));
+  }
+
+  public List<ReservationDto> findAll() {
+
+    return reservationRepository.findAll()
+      .stream()
+      .map(reservationMapper::toDto)
+      .toList();
+  }
+
+  public ReservationDto findById(Long id) {
+
+    return reservationMapper.toDto(
+      reservationRepository.findById(id)
+        .orElseThrow(() ->
+          new ResourceNotFoundException("Reservation with id " + id + " not found"))
+    );
   }
 
   public void delete(Long id) {
@@ -45,11 +85,16 @@ public class ReservationService {
   public long count() {
     return reservationRepository.count();
   }
+
   public void reserveStock(Long productId, Integer quantity) {
+
+    // TODO business logic
 
   }
 
   public void releaseStock(Long productId, Integer quantity) {
+
+    // TODO business logic
 
   }
 }

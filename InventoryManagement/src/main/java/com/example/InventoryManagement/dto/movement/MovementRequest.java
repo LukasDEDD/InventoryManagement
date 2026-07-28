@@ -2,8 +2,7 @@ package com.example.InventoryManagement.dto.movement;
 
 public class MovementRequest {
 
-  private Long fromWarehouseId;
-  private Long toWarehouseId;
+
   private Long productId;
   private Integer quantity;
 
@@ -14,27 +13,10 @@ public class MovementRequest {
                          Long toWarehouseId,
                          Long productId,
                          Integer quantity) {
-    this.fromWarehouseId = fromWarehouseId;
-    this.toWarehouseId = toWarehouseId;
     this.productId = productId;
     this.quantity = quantity;
   }
 
-  public Long getFromWarehouseId() {
-    return fromWarehouseId;
-  }
-
-  public void setFromWarehouseId(Long fromWarehouseId) {
-    this.fromWarehouseId = fromWarehouseId;
-  }
-
-  public Long getToWarehouseId() {
-    return toWarehouseId;
-  }
-
-  public void setToWarehouseId(Long toWarehouseId) {
-    this.toWarehouseId = toWarehouseId;
-  }
 
   public Long getProductId() {
     return productId;
