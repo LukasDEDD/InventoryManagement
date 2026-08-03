@@ -9,13 +9,20 @@ on:
     branches:
       - master
 
+
 jobs:
+
   build-test:
+
     runs-on: ubuntu-latest
 
     steps:
+
+
       - name: Checkout code
         uses: actions/checkout@v5
+
+
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -23,11 +30,17 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+
+
       - name: Build and Test
         run: mvn clean verify
 
+
+
       - name: SpotBugs scan
         run: mvn spotbugs:check
+
+
 
       - name: Build Docker image
         run: docker build -t inventory-app .
