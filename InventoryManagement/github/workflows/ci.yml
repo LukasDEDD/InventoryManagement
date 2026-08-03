@@ -20,12 +20,12 @@ jobs:
 
       # 1. Stáhne kód
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
 
       # 2. Nastaví Javu
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
