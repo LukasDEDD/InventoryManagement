@@ -1,0 +1,46 @@
+name: Java CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Stáhne kód
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      # 2. Nastaví Javu
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+
+      # 3. Build + test + JaCoCo
+      - name: Build and Test
+        run: mvn clean verify
+
+
+      # 4. SpotBugs kontrola
+      - name: SpotBugs scan
+        run: mvn spotbugs:check
+
+
+      # 5. Docker build
+      - name: Build Docker image
+        run: docker build -t inventory-app .
