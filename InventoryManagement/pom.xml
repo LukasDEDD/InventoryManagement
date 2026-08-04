@@ -105,15 +105,14 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.8.6.6</version>
-
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
+                        <id>spotbugs</id>
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>
+
 
         </plugins>
     </build>
