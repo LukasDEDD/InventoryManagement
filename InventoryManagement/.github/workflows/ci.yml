@@ -54,6 +54,8 @@ jobs:
         working-directory: ./InventoryManagement
         run: docker build -t inventory-app .
 
+  # CD
+
       - name: Log in to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: docker/login-action@v3
