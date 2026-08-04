@@ -48,7 +48,7 @@ jobs:
 
       - name: SpotBugs scan
         working-directory: ./InventoryManagement
-        run: mvn spotbugs:check
+        run: mvn spotbugs:spotbugs
 
       - name: Build Docker image
         working-directory: ./InventoryManagement
