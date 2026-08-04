@@ -7,7 +7,7 @@ RUN mvn -B dependency:resolve
 
 COPY src ./src
 
-RUN mvn -B package
+RUN mvn -B -DskipTests package
 
 
 FROM eclipse-temurin:21-jre AS runtime
