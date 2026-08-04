@@ -43,7 +43,7 @@ jobs:
         env:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/InventoryManagement
           SPRING_DATASOURCE_USERNAME: postgres
-          SPRING_DATASOURCE_PASSWORD: 820414Got
+          SPRING_DATASOURCE_PASSWORD: postgres
         run: mvn clean verify
 
       - name: SpotBugs scan
