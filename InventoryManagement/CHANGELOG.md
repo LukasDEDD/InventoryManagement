@@ -1,5 +1,6 @@
 # CHANGELOG.md
 
+
 ## [1.4.0] – CI/CD Pipeline Improvements
 
 ### Added
