@@ -1,5 +1,18 @@
 # CHANGELOG.md
 
+
+## [1.5.0] - 2026-08-06
+### Added
+- New production workflow improvements
+- Updated Kubernetes manifests
+
+### Changed
+- Updated Docker image to version 2.0.0
+
+### Fixed
+- Minor CI warnings
+
+
 ## [1.4.0] – CI/CD Pipeline Improvements
 
 ### Added
