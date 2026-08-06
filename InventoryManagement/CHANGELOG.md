@@ -1,5 +1,16 @@
 # CHANGELOG.md
 
+## [1.5.0] - Kubernetes Deployment & Production Workflow Updates
+### Added
+- New production workflow improvements
+- Updated Kubernetes manifests
+
+### Changed
+- Updated Docker image to version 1.5.0
+
+### Fixed
+- Minor CI warnings
+
 
 ## [1.4.0] – CI/CD Pipeline Improvements
 
