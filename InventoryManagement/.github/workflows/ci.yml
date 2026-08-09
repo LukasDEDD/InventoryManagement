@@ -50,10 +50,6 @@ jobs:
         working-directory: ./InventoryManagement
         run: mvn spotbugs:spotbugs
 
-      - name: Build Docker image
-        working-directory: ./InventoryManagement
-        run: docker build -t inventory-app .
-
 
 
       - name: Log in to Docker Hub
@@ -62,6 +58,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        working-directory: ./InventoryManagement
+        run: docker build -t inventory-app .
 
       - name: Push Docker image to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'

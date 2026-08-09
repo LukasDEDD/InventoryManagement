@@ -1,5 +1,24 @@
 # CHANGELOG.md
 
+
+## [1.6.0] – CI Pipeline Stabilization & Helm Workflow Cleanup ##
+### Added
+- Added Helm linting step to CI pipeline
+- Introduced automated changelog generation for release workflow
+- Added improved Kubernetes service and deployment manifests
+
+### Changed
+- CI pipeline updated after migration from Podman to Docker Desktop
+- Refactored deployment structure and moved Kubernetes manifests to unified Helm chart
+- Updated build and push logic for Docker images
+
+### Fixed
+- Fixed inconsistent CI job ordering
+- Resolved minor YAML formatting issues in Kubernetes manifests
+- Improved reliability of Docker image publishing in GitHub Actions
+
+---
+
 ## [1.5.0] - Kubernetes Deployment & Production Workflow Updates
 ### Added
 - New production workflow improvements
