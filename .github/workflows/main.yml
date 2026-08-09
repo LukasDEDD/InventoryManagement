@@ -66,5 +66,5 @@ jobs:
       - name: Push Docker image to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
-          docker tag inventory-app ${{ secrets.DOCKERHUB_USERNAME }}/inventory-app:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/inventory-app:latest
+          docker tag inventory-app ${{ secrets.DOCKERHUB_USERNAME }}/inventory-app:1.6.0
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/inventory-app:1.6.0
