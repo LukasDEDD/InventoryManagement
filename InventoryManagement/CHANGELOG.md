@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## [1.6.1] - 2026-08-10
+
+### Fixed
+- **Spring Boot Actuator:** Added `spring-boot-starter-actuator` dependency to `pom.xml` to enable health checks.
+- **Kubernetes Probes:** Fixed `livenessProbe` and `readinessProbe` in the Helm chart to properly target the `/actuator/health` endpoint.
+- **Resource Limits:** Increased container memory limits in `values.yaml` to `1Gi` to ensure smooth application startup and prevent health probe timeouts.
+
+---
 
 ## [1.6.0] – CI Pipeline Stabilization & Helm Workflow Cleanup ##
 ### Added
