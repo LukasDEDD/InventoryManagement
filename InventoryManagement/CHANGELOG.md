@@ -1,5 +1,16 @@
 # CHANGELOG.md
 
+## [1.7.0] – Microsoft Entra ID Security & Azure Container Apps Deployment
+
+### Added
+- Integrated Microsoft Entra ID (Azure AD) authentication using OAuth2 Resource Server.
+- Configured PostgreSQL database container and integration for Azure deployment.
+- Containerized Java JAR application and configured deployment to Azure Container Apps.
+- Set up Spring Security filter chain to secure REST API endpoints.
+- Added environment variables for database connection and Entra ID (`AZURE_TENANT_ID`, `AZURE_CLIENT_ID`).
+- Exposed public health endpoints under `/actuator/health`.
+
+
 ## [1.6.1] - 2026-08-10
 
 ### Fixed

@@ -76,6 +76,14 @@ Application: `http://localhost:8080`
 
 ---
 
+## Microsoft Entra ID Integration & Azure Setup
+
+* **Spring Security:** Configured `SecurityFilterChain` to authenticate incoming JWT tokens.
+* **Database:** Connection configured for the PostgreSQL container running in Azure.
+* **Build & Container:** The project is compiled via Maven (`mvn clean package`) into a Java 17 JAR and containerized for deployment on Azure Container Apps.
+
+---
+
 ## Author
 
 **Lukas Simek**  

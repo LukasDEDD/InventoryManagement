@@ -374,6 +374,31 @@ helm history inventory
 
 ---
 
+## Security & Authentication
+
+The application uses **Microsoft Entra ID (Azure AD)** for securing REST API endpoints via OAuth2 Resource Server and JWT validation.
+
+* **Protected Endpoints:** All REST API endpoints require a valid Bearer token.
+* **Public Endpoints:** `/actuator/health`, `/swagger-ui/**`, `/v3/api-docs/**`
+
+### Environment Variables
+
+To run the application in Azure Container Apps (or locally), ensure the following environment variables are set:
+
+* `AZURE_TENANT_ID` – Microsoft Entra ID tenant ID
+* `AZURE_CLIENT_ID` – Application registration Client ID
+* `SPRING_DATASOURCE_URL` – JDBC URL for the Azure PostgreSQL database
+* `SPRING_DATASOURCE_USERNAME` – Database username
+* `SPRING_DATASOURCE_PASSWORD` – Database password
+
+---
+
+## Deployment (Azure Container Apps)
+
+The application is compiled into an executable JAR file, packaged into a Docker container, and deployed to **Azure Container Apps** along with a PostgreSQL database container.
+
+---
+
 ## Failure Scenarios
 
 1. Database Down
